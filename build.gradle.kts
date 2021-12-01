@@ -16,11 +16,14 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation("org.reflections:reflections:0.10.2")
 
-
 }
 
 tasks.test {
     useJUnit()
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
 }
 
 tasks.withType<KotlinCompile>() {
