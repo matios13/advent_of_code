@@ -17,8 +17,8 @@ class Day01 : Day(1,"Sonar Sweep"){
             .toString()
     }
     private fun Sequence<Int>.countIncreses() : Int{
-        return this.windowed(2)
-            .count {it.last()-it.first() > 0 }
+        return this.zipWithNext()
+            .count{it.second-it.first > 0}
     }
 
 }
