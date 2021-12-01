@@ -5,12 +5,16 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
 @ExperimentalTime
-fun main() {
+fun main(args: Array<String>) {
     hello()
-    val input = Scanner(System.`in`)
-    val a = input.nextInt()
+    val dayNumber = if (args.isEmpty()) {
+        val input = Scanner(System.`in`)
+        input.nextInt()
+    } else {
+        args[0].toInt()
+    }
     val days = Days()
-    val day = days.getDay(a)
+    val day = days.getDay(dayNumber)
     println("running ${day.title} for day ${day.day}...")
     performDay(day)
 }
@@ -19,6 +23,7 @@ private fun hello() {
     println(asciiGreetings)
     println("What day you want to run?")
 }
+
 @ExperimentalTime
 private fun performDay(day: Day) {
     val partOne = measureTimedValue { day.partOne() }
@@ -28,7 +33,7 @@ private fun performDay(day: Day) {
 }
 
 private val asciiGreetings: String = """
-        ||::|:||   .--------,
+    ||::|:||   .--------,
     |:||:|:|   |_______ /        .-.
     ||::|:|| ."`  ___  `".    {\('v')/}
     \\\/\///:  .'`   `'.  ;____`(   )'____
