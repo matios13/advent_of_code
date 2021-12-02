@@ -51,7 +51,7 @@ class Day02 : Day(2, "Dive") {
 
     private fun toPair(line: String): Pair<Direction, Int> {
         val values = line.split(" ")
-        return Pair(Direction.getByLowerCaseName(values[0]), values[1].toInt())
+        return Direction.getByLowerCaseName(values[0]) to values[1].toInt()
     }
 
 }
