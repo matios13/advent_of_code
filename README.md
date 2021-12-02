@@ -1,5 +1,4 @@
-# advent_of_code
-advent of code 2021
+# advent of code 2021 in kotlin
 https://adventofcode.com/2021/
 ### Using:
 - ![kotlin-version](https://img.shields.io/badge/kotlin-1.6.0-purple)
