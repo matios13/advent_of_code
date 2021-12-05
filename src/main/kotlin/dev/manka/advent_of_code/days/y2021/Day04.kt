@@ -8,7 +8,7 @@ class Day04 : Day(4, "Binary diagnostic") {
     private class Board(val numbers: List<List<Int>>) {
         val marked: List<MutableList<Boolean>> = numbers.map { it.map { false }.toMutableList() }
         fun isWin(): Boolean {
-            val horizontalFind = marked.firstOrNull() { !it.contains(false) }
+            val horizontalFind = marked.firstOrNull { !it.contains(false) }
 
             return if (horizontalFind != null) true else {
                 var verticalFind = false
@@ -18,7 +18,7 @@ class Day04 : Day(4, "Binary diagnostic") {
                         break
                     }
                 }
-                return verticalFind;
+                return verticalFind
             }
         }
 
@@ -26,7 +26,7 @@ class Day04 : Day(4, "Binary diagnostic") {
             val coordinates = numbers.mapIndexed { x, row ->
                 val y = row.indexOf(number)
                 if (y > -1) x to y else null
-            }.filterNotNull().firstOrNull();
+            }.filterNotNull().firstOrNull()
             if (coordinates != null) {
                 marked[coordinates.first][coordinates.second] = true
             }
@@ -42,7 +42,7 @@ class Day04 : Day(4, "Binary diagnostic") {
         val numbers = inputList.first().split(",").map { it.toInt() }
         val allBoards = createBoards()
 
-        var index = 0;
+        var index = 0
 
         while (index < numbers.size) {
             allBoards.forEach { it.markIfExist(numbers[index]) }
@@ -50,7 +50,7 @@ class Day04 : Day(4, "Binary diagnostic") {
             if (winBoard != null) {
                 return "${winBoard.calculateScore(numbers[index])}"
             }
-            index++;
+            index++
         }
         return "nothing :( "
     }
@@ -59,9 +59,9 @@ class Day04 : Day(4, "Binary diagnostic") {
         val numbers = inputList.first().split(",").map { it.toInt() }
         val allBoards = createBoards()
 
-        var index = -1;
+        var index = -1
         while (allBoards.size > 1) {
-            index++;
+            index++
             allBoards.forEach { it.markIfExist(numbers[index]) }
             allBoards.removeIf { it.isWin() }
 
