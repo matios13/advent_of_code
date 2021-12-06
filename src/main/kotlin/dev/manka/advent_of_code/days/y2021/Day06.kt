@@ -13,8 +13,10 @@ class Day06 : Day(6, "Lanternfish") {
         return "$numberOfFish"
     }
 
-    private fun calculateFish(nrOfDays: Int): Int {
-        var fishGroup = inputList.first().split(",").groupingBy { it.toInt() }.eachCount()
+    private fun calculateFish(nrOfDays: Int): Long {
+        var fishGroup =
+            inputList.first().split(",").groupingBy { it.toInt() }.eachCount().map { it.key to it.value.toLong() }
+                .toMap()
         for (i in 1..nrOfDays) {
             val nextGen =
                 fishGroup.asSequence().filter { it.key != 0 }.map { it.key - 1 to it.value }.toMap().toMutableMap()
@@ -29,9 +31,7 @@ class Day06 : Day(6, "Lanternfish") {
             }
             fishGroup = nextGen
         }
-        val numberOfFish = fishGroup.map { it.value }.sum()
-        return numberOfFish
+        return fishGroup.map { it.value }.sum()
     }
-
 
 }
