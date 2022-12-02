@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
         args[0].toInt()
     }
     val days = Days()
-    val day = days.getDay(dayNumber)
+    val day = days.getDay(dayNumber,2022)
     println("running ${day.title} for day ${day.day}...")
     performDay(day)
 }
