@@ -2,7 +2,7 @@ package dev.manka.advent_of_code.days.y2022
 
 import dev.manka.advent_of_code.days.Day
 
-class Day01 : Day(1,"Sonar Sweep",2022){
+class Day01 : Day(1,"Calorie Counting",2022){
     override fun partOne(): String {
         return extractElvesWithCalories(inputList).max().toString()
     }
