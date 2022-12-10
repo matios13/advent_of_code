@@ -7,7 +7,7 @@ import java.awt.Point
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
-class Day09 :Day(9, "Treetop Tree House", 2022) {
+class Day09 :Day(9, "Rope Bridge", 2022) {
     override fun partOne()= headMoves.moveTail().distinctSize().toString()
 
 
