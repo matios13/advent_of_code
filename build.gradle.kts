@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation("io.arrow-kt:arrow-core:1.0.1")
     implementation("org.reflections:reflections:0.10.2")
+    implementation("com.google.code.gson:gson:2.10")
     testImplementation(kotlin("test"))
 
 }
