@@ -18,6 +18,10 @@ fun Point.moveToY(i: Int): Point {
     y = i
     return this
 }
+fun Point.below() = Point(x, y + 1)
+fun Point.bottomRight() = Point(x + 1, y + 1)
+fun Point.bottomLeft() = Point(x - 1, y + 1)
+
 fun Point.nearestPoints(): List<Point> {
     return listOf(Point(x - 1, y), Point(x, y - 1), Point(x + 1, y), Point(x, y + 1)).filter { it.x >= 0 && it.y >= 0 }
 }
