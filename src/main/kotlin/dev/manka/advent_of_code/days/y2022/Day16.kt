@@ -8,7 +8,7 @@ class Day16 : Day(16, "Proboscidea Volcanium", 2022) {
         val allValves = parseAllValves()
         return findMaxPressure(
             "AA",
-            allValves.values.filter { it.flowRate > 0 }.map { it.name }.toSet(),
+            allValves.getAllNonZeroFlowRateValves().toSet(),
             30,
             0,
             allValves
@@ -17,7 +17,7 @@ class Day16 : Day(16, "Proboscidea Volcanium", 2022) {
 
     override fun partTwo(): String {
         val allValves = parseAllValves()
-        val toVisitAll = allValves.values.filter { it.flowRate > 0 }.map { it.name }.toTypedArray()
+        val toVisitAll = allValves.getAllNonZeroFlowRateValves().toTypedArray()
 
         return (0 until 2.0.pow(toVisitAll.size).toInt()).toList().parallelStream()
             .map { getPermutationFor(toVisitAll, it) }
@@ -36,7 +36,7 @@ class Day16 : Day(16, "Proboscidea Volcanium", 2022) {
         val valves = inputList.map { Valve.of(it) }
         val scan = valves
             .associateBy { it.name }.let { scan ->
-                val valves = scan.values.filter { it.flowRate > 0 }.map { it.name }.toSet()
+                val valves = scan.getAllNonZeroFlowRateValves().toSet()
                 valves.plus("AA")
                     .map {
                         Valve(it, scan[it]!!.flowRate, findPaths(scan, it, valves.minus(it)))
@@ -122,10 +122,6 @@ class Day16 : Day(16, "Proboscidea Volcanium", 2022) {
 
     data class Valve(val name: String, val flowRate: Int, val valves: Map<String, Int>) {
 
-        fun getValvesWithNonZeroFlowRate(): Set<String> {
-            return valves.filter { it.value > 0 }.map { it.key }.toSet()
-        }
-
         companion object {
             private val regex = Regex("Valve ([A-Z]{2}) has flow rate=(\\d*); tunnels? leads? to valves? (.*)")
             fun of(input: String): Valve {
@@ -133,6 +129,9 @@ class Day16 : Day(16, "Proboscidea Volcanium", 2022) {
                 return Valve(name, flowRate.toInt(), valves.split(", ").associateWith { 1 })
             }
         }
+    }
+    private fun Map<String,Valve>.getAllNonZeroFlowRateValves(): List<String> {
+        return values.filter { it.flowRate > 0 }.map { it.name }
     }
 
 }
