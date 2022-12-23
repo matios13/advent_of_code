@@ -28,3 +28,5 @@ fun Point.nearestPoints(): List<Point> {
 fun Point.nearestPointsWithin(xSize: Int, ySize: Int): List<Point> {
     return nearestPoints().filter { it.x < xSize && it.y < ySize }
 }
+
+fun Point.copy() = Point(x, y)
